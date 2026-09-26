@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Airline OS — The operating system for your airline</title>
+<meta name="description" content="Airline OS is an airline life layer for Microsoft Flight Simulator 2024: a cabin that talks, a company that dispatches, and a ramp that responds — built around the airline you already fly. No packs. Your livery, read live.">
+<meta property="og:title" content="Airline OS — The operating system for your airline">
+<meta property="og:description" content="Cabin · Dispatch · Ramp — an airline life layer for MSFS 2024. No airline packs: your livery, read live from the sim.">
+<meta property="og:image" content="assets/roadmap.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>✈️</text></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <span class="brand">AIRLINE<b>&nbsp;OS</b></span>
+    <div class="nav-links">
+      <a href="#features" class="hide-sm">Features</a>
+      <a href="#engine" class="hide-sm">How it works</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="devlog/">Devlog</a>
+      <a href="https://github.com/JoelScripts/AirlineOs-Website" target="_blank" rel="noopener">GitHub</a>
+      <span class="chip">LAUNCHING&nbsp;·&nbsp;2027</span>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="chip">IN DEVELOPMENT · MICROSOFT FLIGHT SIMULATOR 2024</span>
+    <h1>AIRLINE<b>&nbsp;OS</b></h1>
+    <div class="tag">The operating system for your airline.</div>
+    <p class="lede">
+      An airline life layer for MSFS&nbsp;2024 — a cabin that talks, a company that
+      dispatches, and a ramp that responds. Built around the airline you already fly:
+      no packs, no codes, <strong>your livery read live from the sim</strong>.
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="devlog/">Follow development</a>
+      <a class="btn btn-ghost" href="https://github.com/JoelScripts/AirlineOs-Website" target="_blank" rel="noopener">View on GitHub</a>
+    </div>
+  </div>
+</header>
+
+<section id="features">
+  <div class="wrap">
+    <span class="kicker">Three modules · one OS</span>
+    <h2>WHAT IT DOES</h2>
+    <p class="sub">Every existing tool does one thing in isolation. Airline OS is the layer that ties the whole operation together — from gate to gate.</p>
+    <div class="grid3">
+      <div class="card">
+        <div class="no">MODULE 01</div>
+        <h3>CABIN</h3>
+        <p>Crew, passengers and announcements alive from gate to gate — spoken with your airline's name and your flight number. First module shipping.</p>
+        <span class="status">MVP IN BUILD</span>
+      </div>
+      <div class="card">
+        <div class="no">MODULE 02</div>
+        <h3>DISPATCH</h3>
+        <p>Company traffic in the cruise — fuel, weather and route from your SimBrief flight plan, signed off by <em>The Company</em>.</p>
+        <span class="status next">PLANNED · Q2 2027</span>
+      </div>
+      <div class="card">
+        <div class="no">MODULE 03</div>
+        <h3>RAMP</h3>
+        <p>Ground services that respond to the flight you actually filed — pushback, catering and baggage choreographed around your schedule.</p>
+        <span class="status next">PLANNED · Q3 2027</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="engine">
+  <div class="wrap">
+    <span class="kicker">The universal engine</span>
+    <h2>WORKS WITH YOUR AIRLINE</h2>
+    <p class="sub">No airline content packs. Ever. Identity flows through a resolution chain — from you, to your flight plan, to the sim itself:</p>
+    <div class="chain">
+      <span class="step"><b>1</b>&nbsp; Manual override</span><span class="arr">›</span>
+      <span class="step"><b>2</b>&nbsp; SimBrief flight plan</span><span class="arr">›</span>
+      <span class="step"><b>3</b>&nbsp; Live livery from the sim</span><span class="arr">›</span>
+      <span class="step"><b>4</b>&nbsp; Generic fallback</span>
+    </div>
+    <ul class="bullets">
+      <li>Reads your livery's airline name, registration and flight number live via SimConnect</li>
+      <li>Imports your latest SimBrief OFP — airline code, callsign, route, fuel and weather</li>
+      <li>Fills the sim's ATC identity from your flight plan, so native ATC calls you by your callsign</li>
+      <li>If you configure nothing at all, it still works — zero setup required</li>
+    </ul>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="wrap">
+    <span class="kicker">Public roadmap</span>
+    <h2>WHERE IT'S HEADED</h2>
+    <p class="sub">Built in the open — the same roadmap we plan against, updated as phases close.</p>
+    <div class="media">
+      <figure>
+        <a href="assets/roadmap.png" target="_blank"><img src="assets/roadmap.png" alt="Airline OS roadmap: Foundation → Cabin MVP → Dispatch → Ramp → Ship"></a>
+        <figcaption>Module roadmap — five phases</figcaption>
+      </figure>
+      <figure>
+        <a href="assets/timeline.png" target="_blank"><img src="assets/timeline.png" alt="Airline OS delivery timeline: Sep 2026 to early 2028"></a>
+        <figcaption>Delivery timeline — Sep 2026 → early 2028</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="teaser">
+  <div class="wrap">
+    <span class="kicker">Announcement teaser</span>
+    <h2>THE VIDEO</h2>
+    <div class="video-box">
+      <video controls preload="metadata" poster="assets/roadmap.png">
+        <source src="assets/teaser.webm" type="video/webm">
+        Your browser does not support WebM.
+      </video>
+    </div>
+  </div>
+</section>
+
+<section id="devlog">
+  <div class="wrap">
+    <span class="kicker">Devlog</span>
+    <h2>LATEST UPDATES</h2>
+    <p class="sub">Development notes, milestones and honest progress — published as it happens.</p>
+    <div class="post-list">
+      <a class="post" href="devlog/001-introducing-airline-os.html">
+        <div class="date">SEP 26, 2026 · POST 001</div>
+        <h3>Introducing Airline OS</h3>
+        <p>Why we're building an airline life layer, what "no airline packs" really means, and where the first release stands today.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="getit" id="buy">
+  <div class="wrap">
+    <span class="kicker">Get Airline OS</span>
+    <h2>BUYING AT LAUNCH</h2>
+    <p class="sub" style="margin:0 auto;">Payware release for Microsoft Flight Simulator 2024 — <strong style="color:var(--amber)">estimated March 2027</strong> for the first module (Cabin). Store links go live here closer to launch; the devlog is where we'll announce it first.</p>
+    <div class="price">CABIN FIRST · DISPATCH &amp; RAMP FOLLOW THROUGH 2027</div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="devlog/">Read the devlog</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <div>
+      <div class="tag">THE OPERATING SYSTEM FOR YOUR AIRLINE.</div>
+      <div class="legal">
+        © 2026 Airline OS. All rights reserved.<br>
+        Microsoft Flight Simulator 2024 is a product of Microsoft Corporation and Asobo Studio.
+        Airline OS is an independent third-party add-on and is not affiliated with, endorsed by,
+        or sponsored by Microsoft or Asobo Studio.
+      </div>
+    </div>
+    <div class="links">
+      <a href="devlog/">Devlog</a>
+      <a href="https://github.com/JoelScripts/AirlineOs-Website" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

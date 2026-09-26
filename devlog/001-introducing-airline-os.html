@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Introducing Airline OS — Devlog 001</title>
+<meta name="description" content="Why we're building an airline life layer for MSFS 2024, what 'no airline packs' really means, and where the first release stands today.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>✈️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="../" style="text-decoration:none">AIRLINE<b>&nbsp;OS</b></a>
+    <div class="nav-links">
+      <a href="../#features" class="hide-sm">Features</a>
+      <a href="../#roadmap">Roadmap</a>
+      <a href="./">Devlog</a>
+      <a href="https://github.com/JoelScripts/AirlineOs-Website" target="_blank" rel="noopener">GitHub</a>
+      <span class="chip">LAUNCHING&nbsp;·&nbsp;2027</span>
+    </div>
+  </div>
+</nav>
+
+<article>
+  <div class="date">SEP 26, 2026 · DEVLOG 001</div>
+  <h1>Introducing Airline OS</h1>
+
+  <p>
+    Every serious sim pilot eventually builds the same imaginary thing: an airline. You pick a
+    livery, you memorise a callsign, you file the same rotation in SimBrief. But when you're
+    actually in the seat, the sim doesn't know any of it. The cabin is silent, the ground crew
+    doesn't care what you filed, and native ATC calls you "heavy" instead of your airline.
+  </p>
+  <p>
+    <strong>Airline OS is the missing layer.</strong> It's an external companion app for MSFS&nbsp;2024 that
+    turns those disconnected moments into one operation — and it ships as three modules:
+  </p>
+  <ul>
+    <li><strong>CABIN</strong> — crew, passengers and spoken announcements from gate to gate, using your airline's name and your flight number.</li>
+    <li><strong>DISPATCH</strong> — company messages in the cruise, straight from your SimBrief OFP, signed by <em>The Company</em>.</li>
+    <li><strong>RAMP</strong> — ground services choreographed around the flight you actually filed.</li>
+  </ul>
+
+  <h2>NO AIRLINE PACKS. EVER.</h2>
+  <p>
+    The reason this doesn't exist yet is that everyone solves it with content packs: buy the
+    airline, get the announcements. We think that's backwards. Your identity already exists —
+    in your livery, in your SimBrief flight plan, in the sim itself. Airline OS reads it live:
+    <strong>manual override → SimBrief OFP → SimConnect live values → generic fallback</strong>.
+    Configure nothing and it still works. That's the whole point.
+  </p>
+
+  <h2>WHERE IT STANDS</h2>
+  <p>
+    Project status today: the two riskiest unknowns are already retired. SimConnect identity
+    values are confirmed readable (Spike&nbsp;1), and the SimBrief OFP fetch works without an API
+    key (Spike&nbsp;2). The first-run onboarding flow — which asks <em>you</em> for your SimBrief
+    Pilot ID instead of hardcoding anything — is specced. Next up is the Cabin MVP spec:
+    event triggers, announcement templates and the audio pipeline.
+  </p>
+  <p>
+    The public estimate for the first payware module is <strong>March 2027</strong>, with Dispatch
+    and Ramp following through the year. The roadmap and timeline on the homepage are the same
+    ones we plan against — when a phase closes, it gets updated here first.
+  </p>
+
+  <h2>WHY THE DEVLOG</h2>
+  <p>
+    No newsletter, no hype cycle — just build notes. Each post will cover what shipped, what
+    broke, and what changed in the plan. If you want to follow along, the repo and this
+    devlog are the two places that matter.
+  </p>
+
+  <a class="back" href="./">← Back to devlog</a>
+</article>
+
+<footer>
+  <div class="wrap foot-in">
+    <div>
+      <div class="tag">THE OPERATING SYSTEM FOR YOUR AIRLINE.</div>
+      <div class="legal">
+        © 2026 Airline OS. All rights reserved.<br>
+        Microsoft Flight Simulator 2024 is a product of Microsoft Corporation and Asobo Studio.
+        Airline OS is an independent third-party add-on and is not affiliated with, endorsed by,
+        or sponsored by Microsoft or Asobo Studio.
+      </div>
+    </div>
+    <div class="links">
+      <a href="../">Home</a>
+      <a href="https://github.com/JoelScripts/AirlineOs-Website" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
