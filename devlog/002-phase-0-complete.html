@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phase 0 complete — Devlog 002</title>
+<meta name="description" content="Every feasibility question answered: live identity read, ATC write-back, a real SimBrief OFP, and the first cabin trigger fired. What broke, and what we build next.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>✈️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="../" style="text-decoration:none">AIRLINE<b>&nbsp;OS</b></a>
+    <div class="nav-links">
+      <a href="../#features" class="hide-sm">Features</a>
+      <a href="../#roadmap">Roadmap</a>
+      <a href="./">Devlog</a>
+      <a href="https://github.com/JoelScripts/AirlineOs-Website" target="_blank" rel="noopener">GitHub</a>
+      <span class="chip">LAUNCHING&nbsp;·&nbsp;2027</span>
+    </div>
+  </div>
+</nav>
+
+<article>
+  <div class="date">SEP 26, 2026 · DEVLOG 002</div>
+  <h1>Phase 0 complete — the sim answers back</h1>
+
+  <p>
+    Devlog 001 closed with "the two riskiest unknowns are retired." That was this morning's
+    position. It's now evening, and <strong>Phase 0 — prove that Airline OS can actually be
+    built — is closed</strong>. Every feasibility question has been asked, answered, and written
+    down. Here's the honest receipt.
+  </p>
+
+  <h2>WHAT WE PROVED</h2>
+  <ul>
+    <li><strong>The sim hands over your identity, live.</strong> Swap a livery mid-session and the
+      registration and flight number follow instantly. Meanwhile the sim's own airline field comes
+      back <em>empty</em> — which is exactly the gap the resolution chain exists to fill.</li>
+    <li><strong>The flow works both ways.</strong> An external process wrote a callsign into the
+      sim's ATC identity (<code>INI001</code> → <code>OS100</code>), it held across sessions, and a
+      second, independent process watched it happen. That's the "native ATC sync" feature, proven
+      end to end.</li>
+    <li><strong>A real flight plan feeds real announcements.</strong> A genuine SimBrief OFP was
+      fetched — sixteen data points (callsign, route, fuel, payload, weather at both ends) now have
+      verified paths into the template engine.</li>
+    <li><strong>The first trigger fired.</strong> We switched the beacon from outside the sim; the
+      event watcher saw it hold, debounced it, and fired the mapped line: <em>"beacon on — flight
+      attendants, prepare for departure."</em> Edge → debounce → trigger → announcement. That's the
+      cabin's nervous system, working.</li>
+  </ul>
+
+  <h2>WHAT BROKE (THE HONEST PART)</h2>
+  <ul>
+    <li><strong>Remote door movement was refused.</strong> We tried to close a door from outside;
+      the sim said no. Fine — Airline OS only ever <em>reads</em> door state. Finding, not failure.</li>
+    <li><strong>Two "writable" flags in our tooling were wrong — in opposite directions.</strong>
+      One var claimed writable and wasn't; another claimed read-only and was. New house rule:
+      every variable gets tested empirically before we trust it.</li>
+    <li><strong>Our automated full-flight test caught a watcher bug</strong> — a door left open at
+      startup would never announce closing. It surfaced in testing, before a single user could have
+      hit it. The fix shipped the same day.</li>
+  </ul>
+
+  <h2>WHAT'S NEXT</h2>
+  <p>
+    Building. The flight-phase engine already passes a complete gate-to-gate simulation — all
+    fourteen phases, from boarding to arrival, with jump protection when the sim fast-forwards.
+    Next come the announcement templates (user-editable plain text, by design), then the voice
+    pipeline, then the first full Cabin run against a live flight.
+  </p>
+  <p>
+    Dates are unchanged: <strong>closed alpha Dec 2026 – Jan 2027</strong>,
+    <strong>Cabin v1.0 estimated March 2027</strong>. Phase 1 is open.
+  </p>
+
+  <a class="back" href="./">← Back to devlog</a>
+</article>
+
+<footer>
+  <div class="wrap foot-in">
+    <div>
+      <div class="tag">THE OPERATING SYSTEM FOR YOUR AIRLINE.</div>
+      <div class="legal">
+        © 2026 Airline OS. All rights reserved.<br>
+        Microsoft Flight Simulator 2024 is a product of Microsoft Corporation and Asobo Studio.
+        Airline OS is an independent third-party add-on and is not affiliated with, endorsed by,
+        or sponsored by Microsoft or Asobo Studio.
+      </div>
+    </div>
+    <div class="links">
+      <a href="../">Home</a>
+      <a href="https://github.com/JoelScripts/AirlineOs-Website" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
