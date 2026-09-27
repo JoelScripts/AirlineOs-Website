@@ -4,8 +4,10 @@ Public marketing site + devlog for **Airline OS**, an airline life layer for
 Microsoft Flight Simulator 2024.
 
 - `index.html` — landing page: features, universal engine, roadmap/timeline, teaser, buy section
+- `legal.html` — copyright, trademarks, third-party notices, privacy
 - `devlog/` — progress updates
 - `style.css` / `assets/` — design system and media
+- `LICENSE` — proprietary, all rights reserved
 - `.github/workflows/deploy-site.yml` — deploys to GitHub Pages on push to `main`
 
 ## Adding a devlog post
@@ -26,6 +28,6 @@ Open `index.html` in a browser — no build step, no dependencies.
 
 ---
 
-© 2026 Airline OS. All rights reserved.
+© 2026 Airline OS. All rights reserved — see [`LICENSE`](LICENSE) and [`legal.html`](legal.html).
 Microsoft Flight Simulator 2024 is a product of Microsoft Corporation and Asobo Studio.
 Airline OS is an independent third-party add-on, not affiliated with Microsoft or Asobo.
