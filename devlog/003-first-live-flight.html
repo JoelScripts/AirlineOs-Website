@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>First live flight — Devlog 003</title>
+<meta name="description" content="BA1470 Heathrow to Glasgow, flown gate-to-gate against a live MSFS session with a real flight plan. The live chain went green — and caught two bugs no muted test could.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>✈️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="../" style="text-decoration:none">AIRLINE<b>&nbsp;OS</b></a>
+    <div class="nav-links">
+      <a href="../#features" class="hide-sm">Features</a>
+      <a href="../#roadmap">Roadmap</a>
+      <a href="./">Devlog</a>
+      <a href="https://github.com/JoelScripts/AirlineOs-Website" target="_blank" rel="noopener">GitHub</a>
+      <span class="chip">LAUNCHING&nbsp;·&nbsp;2027</span>
+    </div>
+  </div>
+</nav>
+
+<article>
+  <div class="date">SEP 27, 2026 · DEVLOG 003</div>
+  <h1>First live flight</h1>
+
+  <p>
+    Every proof so far has been run with the sim muted, the flight scripted, or both. Today we took
+    <strong>BA1470 — London Heathrow to Glasgow</strong> out of the gate against a live MSFS session
+    with a real SimBrief flight plan loaded, and let the cabin talk. The live chain held end to end,
+    and the run earned its keep by finding two bugs that no amount of muted testing could have surfaced.
+  </p>
+
+  <h2>WHAT WENT GREEN</h2>
+  <ul>
+    <li><strong>The live chain, end to end.</strong> Flight-plan identity resolved, the flight-phase
+      engine tracked the aircraft through the phases, the trigger router picked the right event, and
+      correctly-worded cabin announcements fired over the sim. Each of those links had been proven on
+      its own; this is the first time they've all run together against a real flight.</li>
+    <li><strong>The wording was right.</strong> What the passengers heard came from the templates as
+      designed — airline identity, flight number and route in the right places — not from a demo
+      script.</li>
+    <li>A local neural voice cast was ear-approved the same day — British cabin crew and US dispatch
+      voices, fully offline — so the lines now have a voice worth listening to.</li>
+  </ul>
+
+  <h2>WHAT IT CAUGHT (THE HONEST PART)</h2>
+  <ul>
+    <li><strong>A silent-voice bug.</strong> Some announcement lines rendered and then never played:
+      a playback tail was orphaned after an early return in the speaker path, so the audio was built
+      and dropped. A muted test can't catch this — by definition nothing is supposed to be heard —
+      only a live run did. It's now guarded by an automated regression test.</li>
+    <li><strong>Announcement spam.</strong> GSX oscillated between its pushback and taxi states, so a
+      once-per-phase announcement re-fired three times in ninety seconds. Fixed with a 120-second
+      refractory gate on each trigger — the state has to stay settled before the line can fire again —
+      and that gate is regression-tested too.</li>
+  </ul>
+
+  <h2>WHAT IT MEANS</h2>
+  <p>
+    We cancelled the run at taxi, read the logs, fixed what they showed, and re-verified. That's the
+    normal build loop — the only difference is that this time it happened on a real flight with
+    everything switched on. Nothing here is a design problem; both bugs were small, local, and closed
+    the same day.
+  </p>
+  <p>
+    Next: a full, uncancelled gate-to-gate run — pushback to arrival, no log review in the middle of
+    it. Dates are unchanged: <strong>closed alpha Dec 2026 – Jan 2027</strong>,
+    <strong>Cabin v1.0 estimated March 2027</strong>.
+  </p>
+
+  <a class="back" href="./">← Back to devlog</a>
+</article>
+
+<footer>
+  <div class="wrap foot-in">
+    <div>
+      <div class="tag">THE OPERATING SYSTEM FOR YOUR AIRLINE.</div>
+      <div class="legal">
+        © 2026 Airline OS. All rights reserved.<br>
+        Microsoft Flight Simulator 2024 is a product of Microsoft Corporation and Asobo Studio.
+        Airline OS is an independent third-party add-on and is not affiliated with, endorsed by,
+        or sponsored by Microsoft or Asobo Studio.
+      </div>
+    </div>
+    <div class="links">
+      <a href="../">Home</a>
+      <a href="https://github.com/JoelScripts/AirlineOs-Website" target="_blank" rel="noopener">GitHub</a>
+      <a href="../legal.html">Legal</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
