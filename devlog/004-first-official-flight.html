@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>First official flight — Devlog 004</title>
+<meta name="description" content="BA1470 Heathrow to Glasgow, completed gate to gate: every phase announced itself, a 13-note post-flight review, and two new controls — the early-access gate and a manual PA row.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>✈️</text></svg>">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="../" style="text-decoration:none">AIRLINE<b>&nbsp;OS</b></a>
+    <div class="nav-links">
+      <a href="../#features" class="hide-sm">Features</a>
+      <a href="../#roadmap">Roadmap</a>
+      <a href="./">Devlog</a>
+      <a href="https://github.com/JoelScripts/AirlineOs-Website" target="_blank" rel="noopener">GitHub</a>
+      <span class="chip">LAUNCHING&nbsp;·&nbsp;2027</span>
+    </div>
+  </div>
+</nav>
+
+<article>
+  <div class="date">SEP 29, 2026 · DEVLOG 004</div>
+  <h1>First official flight</h1>
+
+  <p>
+    Last night's <strong>BA1470 — London Heathrow to Glasgow</strong> is the first run we're willing to
+    call official: pushed back from the stand, flew the route, landed, and shut down at the gate with
+    nothing cancelled and no mid-flight log review. The cabin talked the whole way — boarding through
+    disembark, each phase announcing itself once — and then the post-flight review wrote thirteen notes.
+    All thirteen are already closed.
+  </p>
+
+  <figure>
+    <img src="../assets/f2-210738.png" alt="Airline OS window over MSFS at the Heathrow gate at night, log showing the boarding announcement for British Airways flight 1470 to Glasgow">
+    <figcaption>21:07 at the stand — boarding, live, over the sim</figcaption>
+  </figure>
+
+  <h2>WHAT WENT GREEN</h2>
+  <ul>
+    <li><strong>Gate to gate, start to finish.</strong> Flight #1 earned its write-up by being cut at
+      taxi. This one ran the whole journey — boarding, pushback, taxi out, takeoff, climb, cruise,
+      descent, approach, landing, taxi in, on stand — with the flight-phase engine tracking every
+      transition and the cabin responding to each one.</li>
+    <li><strong>Every announcement, once each.</strong> The full 24-trigger spec fired with zero
+      duplicates. The announcement spam flight #1 exposed (a sim state oscillating between pushback and
+      taxi) stayed fixed under real conditions: the phase engine now latches pushback complete and holds
+      settled states before a line can fire again.</li>
+    <li><strong>The words matched the flight.</strong> Real cruising altitude read back to the cabin,
+      arrival announced with the destination's local time and its weather in plain words — "fine, with
+      clear skies and good visibility", not a raw flight-plan category code.</li>
+  </ul>
+
+  <figure>
+    <img src="../assets/f2-214603.png" alt="British Airways A320 in oneworld livery climbing over city lights at night">
+    <figcaption>Climb out — the cabin heard the 10,000-foot callout on the way up</figcaption>
+  </figure>
+
+  <h2>THE POST-FLIGHT REVIEW</h2>
+  <p>
+    A flight is only useful if you read the logs afterwards. Ours wrote thirteen notes. The highlights,
+    honestly:
+  </p>
+  <ul>
+    <li><strong>Some lines belong to the flight deck, not the cabin.</strong> "Positive rate", "gear up",
+      "cleared for takeoff" — passengers never hear those. Cut.</li>
+    <li><strong>The seatbelt chime had a phantom source.</strong> The sign state was being read from the
+      wrong sim variable, so the chime could fire when nothing happened — and one climb callout claimed
+      sign state it hadn't verified, doubling the chime. It now reads the actual cabin alert switch, and
+      each chime has exactly one owner.</li>
+    <li><strong>The taxi callout didn't wait for pushback to finish.</strong> Pushback complete is now
+      latched, and the safety demo gets a beat of its own — it plays into the pushback, never racing the
+      taxi-out line.</li>
+    <li><strong>The arrival ETA was telling the current time.</strong> It now uses the real estimated
+      arrival from the flight plan / FMS, converted to the destination's clock — so "we'll be on the
+      ground at…" is a forecast, not a timestamp.</li>
+    <li><strong>No airline's safety video ships with the product.</strong> Those recordings are
+      copyrighted and none can be found legally. The demo plays its chimes, leads in with our own
+      announcement — and there's a documented drop-in folder so you can supply your own airline's clip.</li>
+    <li><strong>"VFR Conditions" isn't a passenger briefing.</strong> Weather announcements now speak
+      plain language, sourced from the flight plan — no weather API, no jargon.</li>
+  </ul>
+  <p>
+    Thirteen notes, closed the next day, each one guarded by the check suite — which now runs
+    <strong>19 checks, all green</strong>.
+  </p>
+
+  <figure>
+    <img src="../assets/f2-223039.png" alt="Cabin window view over city lights at night with the Airline OS log open, showing the cruise and descent announcements that fired">
+    <figcaption>Descent into Glasgow — the log of what the cabin actually heard</figcaption>
+  </figure>
+
+  <h2>NEW IN THE APP</h2>
+  <ul>
+    <li><strong>Every flight starts behind an acknowledgement.</strong> This is a development build and
+      it says so: a gate now opens before every live or demo flight, and START stays dead until you tick
+      "I understand and wish to continue". No clicking past it by accident.</li>
+    <li><strong>The PA is on the dashboard.</strong> A manual PA row picks any of the 24 announcements
+      and says it on demand while a flight is running — useful for testing, and for that one announcement
+      you want to hear again.</li>
+  </ul>
+
+  <figure>
+    <img src="../assets/f2-224207.png" alt="British Airways A320 on stand at Glasgow airport at night under apron lighting">
+    <figcaption>22:42 on stand at Glasgow — gate to gate, start to finish</figcaption>
+  </figure>
+
+  <h2>WHAT'S NEXT</h2>
+  <p>
+    More of the same, with harder conditions: busy airports, weather, and the arrival rush — every flight
+    still feeds the post-flight review. Dates are unchanged:
+    <strong>closed alpha Dec 2026 – Jan 2027</strong>, <strong>Cabin v1.0 estimated March 2027</strong>.
+  </p>
+
+  <a class="back" href="./">← Back to devlog</a>
+</article>
+
+<footer>
+  <div class="wrap foot-in">
+    <div>
+      <div class="tag">THE OPERATING SYSTEM FOR YOUR AIRLINE.</div>
+      <div class="legal">
+        © 2026 Airline OS. All rights reserved.<br>
+        Microsoft Flight Simulator 2024 is a product of Microsoft Corporation and Asobo Studio.
+        Airline OS is an independent third-party add-on and is not affiliated with, endorsed by,
+        or sponsored by Microsoft or Asobo Studio.
+      </div>
+    </div>
+    <div class="links">
+      <a href="../">Home</a>
+      <a href="https://github.com/JoelScripts/AirlineOs-Website" target="_blank" rel="noopener">GitHub</a>
+      <a href="../legal.html">Legal</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -133,6 +133,9 @@ article p { color: var(--muted); margin: 16px 0; font-size: 16.5px; }
 article ul { margin: 16px 0 16px 22px; color: var(--muted); }
 article li { margin: 8px 0; }
 article .back { display: inline-block; margin-top: 44px; font-size: 13px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 700; }
+article figure { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--panel); margin: 30px 0; }
+article figure img { width: 100%; }
+article figcaption { padding: 12px 16px; font-size: 12.5px; letter-spacing: 2px; color: var(--dim); text-transform: uppercase; }
 
 /* ---------- footer ---------- */
 footer { padding: 46px 0 60px; color: var(--dim); font-size: 13px; }
